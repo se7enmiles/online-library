@@ -1,28 +1,24 @@
-# BookLoop — Session 1 reference code
+# BookLoop — Session 2 reference code
 
-Finished state of the project at the end of Session 1 (Build the foundation).
+Finished state of the project at the end of Session 2 (Users & authentication).
 
 ## Run it
 
 1. Copy the `bookloop` folder into your MAMP `htdocs` folder.
-2. Open phpMyAdmin (http://localhost:8888/phpMyAdmin/), go to the SQL tab, paste
-   the contents of `database.sql` and click Go. This creates the `bookloop`
-   database, the `books` table and six sample books.
-3. Open http://localhost:8888/bookloop/
+2. In phpMyAdmin run `database.sql` first (Session 1: database + books),
+   then `database-session-02.sql` (the `users` table).
+3. Open http://localhost:8888/bookloop/ and create an account.
 
-## Settings
-
-`config.php` uses MAMP defaults (port 8889, user root, password root).
-On XAMPP/Windows change the port to 3306 and the password to an empty string.
-
-## Files
+## New in this session
 
 | File | Purpose |
 |------|---------|
-| `database.sql` | Creates the database, the `books` table, sample rows |
-| `config.php` | PDO connection, `$pdo` used by every page |
-| `includes/header.php` | `<head>`, Bootstrap CSS, navbar, opens `<main>` |
-| `includes/footer.php` | Closes `<main>`, footer, Bootstrap JS |
-| `assets/style.css` | The tiny amount of custom CSS |
-| `index.php` | Book catalog (all books as cards) |
-| `book.php` | One book, loaded by `?id=` with a prepared statement |
+| `database-session-02.sql` | The `users` table, with a unique email |
+| `includes/auth.php` | `session_start()`, `isLoggedIn()`, `currentUser()`, `requireLogin()`, flash messages |
+| `register.php` | Registration form, validation, `password_hash()` |
+| `login.php` | Login form, `password_verify()`, `session_regenerate_id()` |
+| `logout.php` | Clears session data, cookie and session file |
+| `account.php` | Private page — uses `requireLogin()` |
+
+Changed: `config.php` now requires `includes/auth.php`;
+`includes/header.php` shows the user's name or the login links, and prints flash messages.

@@ -19,3 +19,6 @@ try {
 } catch (PDOException $e) {
     die('Database connection failed: ' . $e->getMessage());
 }
+
+// Sessions and login helpers (Session 2)
+require_once __DIR__ . '/includes/auth.php';
