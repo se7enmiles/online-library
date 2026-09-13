@@ -28,3 +28,6 @@ require_once __DIR__ . '/includes/book-helpers.php';
 
 // Personal library helpers (Session 4)
 require_once __DIR__ . '/includes/shelf-helpers.php';
+
+// Reservations and borrowing (Session 5)
+require_once __DIR__ . '/includes/reservation-helpers.php';

@@ -47,6 +47,11 @@ require 'includes/header.php';
         </p>
         <p><?= nl2br(htmlspecialchars($book['description'] ?? '')) ?></p>
 
+        <?php
+        $resBook = $book;
+        require 'includes/reservation-panel.php';
+        ?>
+
         <?php if (isLoggedIn()): ?>
             <div class="my-3">
                 <div class="text-muted small mb-1">My library</div>

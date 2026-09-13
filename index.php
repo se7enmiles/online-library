@@ -121,6 +121,8 @@ require 'includes/header.php';
                             <span class="badge text-bg-light border"><?= $book['year'] ?></span>
                         <?php endif; ?>
 
+                        <?= stateBadge(bookState((int) $book['id'])) ?>
+
                         <?php $shelf = shelfStatus((int) $book['id']); ?>
                         <?php if ($shelf): ?>
                             <div class="mt-2"><span class="badge text-bg-success"><?= shelfLabel($shelf) ?></span></div>
