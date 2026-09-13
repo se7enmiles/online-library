@@ -12,7 +12,12 @@ require 'includes/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">Book catalog</h1>
-    <span class="text-muted"><?= count($books) ?> books</span>
+    <div>
+        <span class="text-muted me-3"><?= count($books) ?> books</span>
+        <?php if (isLoggedIn()): ?>
+            <a href="add-book.php" class="btn btn-primary btn-sm">Add a book</a>
+        <?php endif; ?>
+    </div>
 </div>
 
 <div class="row g-4">

@@ -22,3 +22,6 @@ try {
 
 // Sessions and login helpers (Session 2)
 require_once __DIR__ . '/includes/auth.php';
+
+// Book validation and ownership helpers (Session 3)
+require_once __DIR__ . '/includes/book-helpers.php';

@@ -4,8 +4,13 @@ require 'config.php';
 // 1. Read the id from the URL: book.php?id=3
 $id = (int) ($_GET['id'] ?? 0);
 
-// 2. Load that one book with a prepared statement (safe against SQL injection)
-$stmt = $pdo->prepare('SELECT * FROM books WHERE id = ?');
+// 2. Load the book. The JOIN brings the owner's name along with the book row.
+$stmt = $pdo->prepare(
+    'SELECT books.*, users.name AS owner_name
+       FROM books
+       LEFT JOIN users ON users.id = books.owner_id
+      WHERE books.id = ?'
+);
 $stmt->execute([$id]);
 $book = $stmt->fetch();
 
@@ -41,6 +46,21 @@ require 'includes/header.php';
             <?php endif; ?>
         </p>
         <p><?= nl2br(htmlspecialchars($book['description'] ?? '')) ?></p>
+
+        <?php if ($book['owner_name']): ?>
+            <p class="text-muted small">Added by <?= htmlspecialchars($book['owner_name']) ?></p>
+        <?php endif; ?>
+
+        <?php if (ownsBook($book)): ?>
+            <hr>
+            <a href="edit-book.php?id=<?= $book['id'] ?>" class="btn btn-outline-secondary">Edit</a>
+
+            <form method="post" action="delete-book.php" class="d-inline"
+                  onsubmit="return confirm('Delete this book?');">
+                <input type="hidden" name="id" value="<?= $book['id'] ?>">
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+        <?php endif; ?>
     </div>
 </div>
 
