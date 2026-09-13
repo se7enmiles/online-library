@@ -47,6 +47,16 @@ require 'includes/header.php';
         </p>
         <p><?= nl2br(htmlspecialchars($book['description'] ?? '')) ?></p>
 
+        <?php if (isLoggedIn()): ?>
+            <div class="my-3">
+                <div class="text-muted small mb-1">My library</div>
+                <?php
+                $shelfBook = $book;
+                require 'includes/shelf-buttons.php';
+                ?>
+            </div>
+        <?php endif; ?>
+
         <?php if ($book['owner_name']): ?>
             <p class="text-muted small">Added by <?= htmlspecialchars($book['owner_name']) ?></p>
         <?php endif; ?>

@@ -25,3 +25,6 @@ require_once __DIR__ . '/includes/auth.php';
 
 // Book validation and ownership helpers (Session 3)
 require_once __DIR__ . '/includes/book-helpers.php';
+
+// Personal library helpers (Session 4)
+require_once __DIR__ . '/includes/shelf-helpers.php';
