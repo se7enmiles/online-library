@@ -18,9 +18,11 @@
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="index.php">Books</a></li>
+                <li class="nav-item"><a class="nav-link" href="exchange.php">Exchange</a></li>
                 <?php if (isLoggedIn()): ?>
                     <li class="nav-item"><a class="nav-link" href="my-library.php">My library</a></li>
                     <li class="nav-item"><a class="nav-link" href="my-loans.php">Loans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="my-exchanges.php">Swaps</a></li>
                     <li class="nav-item"><a class="nav-link" href="my-books.php">My books</a></li>
                     <li class="nav-item"><a class="nav-link" href="add-book.php">Add a book</a></li>
                 <?php endif; ?>

@@ -33,6 +33,7 @@ require 'includes/header.php';
                 <th>Author</th>
                 <th>Genre</th>
                 <th>Year</th>
+                <th>Exchange</th>
                 <th class="text-end">Actions</th>
             </tr>
         </thead>
@@ -43,6 +44,16 @@ require 'includes/header.php';
                     <td><?= htmlspecialchars($book['author']) ?></td>
                     <td><?= htmlspecialchars($book['genre']) ?></td>
                     <td><?= $book['year'] ?: '—' ?></td>
+                    <td>
+                        <form method="post" action="exchange-action.php" class="d-inline">
+                            <input type="hidden" name="action" value="toggle">
+                            <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
+                            <input type="hidden" name="back" value="my-books.php">
+                            <button type="submit" class="btn btn-sm <?= $book['for_exchange'] ? 'btn-success' : 'btn-outline-secondary' ?>">
+                                <?= $book['for_exchange'] ? '🔄 Offered' : 'Offer for exchange' ?>
+                            </button>
+                        </form>
+                    </td>
                     <td class="text-end">
                         <a href="edit-book.php?id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
 

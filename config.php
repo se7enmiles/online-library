@@ -31,3 +31,6 @@ require_once __DIR__ . '/includes/shelf-helpers.php';
 
 // Reservations and borrowing (Session 5)
 require_once __DIR__ . '/includes/reservation-helpers.php';
+
+// Book exchange (Session 6)
+require_once __DIR__ . '/includes/exchange-helpers.php';

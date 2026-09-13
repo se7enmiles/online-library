@@ -47,6 +47,15 @@ require 'includes/header.php';
         </p>
         <p><?= nl2br(htmlspecialchars($book['description'] ?? '')) ?></p>
 
+        <?php if ($book['for_exchange']): ?>
+            <p class="mb-2">
+                <span class="badge text-bg-info">🔄 Offered for exchange</span>
+                <?php if (isLoggedIn() && !ownsBook($book) && canBeExchanged($book)): ?>
+                    <a href="propose-exchange.php?book_id=<?= $book['id'] ?>" class="ms-2">Offer a swap</a>
+                <?php endif; ?>
+            </p>
+        <?php endif; ?>
+
         <?php
         $resBook = $book;
         require 'includes/reservation-panel.php';
