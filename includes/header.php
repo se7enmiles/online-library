@@ -25,6 +25,7 @@
                     <li class="nav-item"><a class="nav-link" href="my-exchanges.php">Swaps</a></li>
                     <li class="nav-item"><a class="nav-link" href="my-books.php">My books</a></li>
                     <li class="nav-item"><a class="nav-link" href="add-book.php">Add a book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="recommend.php">✨ For you</a></li>
                 <?php endif; ?>
             </ul>
 

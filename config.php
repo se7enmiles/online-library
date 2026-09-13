@@ -4,7 +4,7 @@
 
 // MAMP defaults. On Windows/XAMPP use port 3306 and password ''.
 $dbHost = 'localhost';
-$dbPort = '3336';
+$dbPort = '3306';
 $dbName = 'bookloop';
 $dbUser = 'root';
 $dbPass = 'root';
@@ -34,3 +34,15 @@ require_once __DIR__ . '/includes/reservation-helpers.php';
 
 // Book exchange (Session 6)
 require_once __DIR__ . '/includes/exchange-helpers.php';
+
+// Talking to other services (Session 7)
+require_once __DIR__ . '/includes/http.php';
+require_once __DIR__ . '/includes/book-api.php';
+
+// Your own API key, if you have one. The file is optional on purpose:
+// the site works without it, only the AI features switch off.
+if (file_exists(__DIR__ . '/config.local.php')) {
+    require_once __DIR__ . '/config.local.php';
+}
+
+require_once __DIR__ . '/includes/ai.php';

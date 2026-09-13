@@ -5,7 +5,16 @@ require 'config.php';
 requireLogin();
 
 $errors = [];
-$book = ['title' => '', 'author' => '', 'genre' => '', 'year' => '', 'description' => ''];
+
+// The fields start empty, or pre-filled from the online search
+// (add-book.php?title=...&author=...).
+$book = [
+    'title'       => trim($_GET['title']  ?? ''),
+    'author'      => trim($_GET['author'] ?? ''),
+    'genre'       => trim($_GET['genre']  ?? ''),
+    'year'        => trim($_GET['year']   ?? ''),
+    'description' => '',
+];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -48,7 +57,10 @@ require 'includes/header.php';
 
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <h1 class="h3 mb-4">Add a book</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">Add a book</h1>
+            <a href="api-search.php" class="btn btn-sm btn-outline-primary">🔎 Find it online</a>
+        </div>
 
         <?php require 'includes/book-form.php'; ?>
     </div>

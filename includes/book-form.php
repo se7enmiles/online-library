@@ -44,10 +44,61 @@
     </div>
 
     <div class="mb-4">
-        <label class="form-label" for="description">Description <span class="text-muted">(optional)</span></label>
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label mb-0" for="description">Description <span class="text-muted">(optional)</span></label>
+
+            <?php if (aiEnabled()): ?>
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="aiButton">
+                    ✨ Generate description
+                </button>
+            <?php endif; ?>
+        </div>
+
         <textarea class="form-control" id="description" name="description" rows="4"><?= htmlspecialchars((string) $book['description']) ?></textarea>
+        <div class="form-text" id="aiStatus"></div>
     </div>
 
     <button class="btn btn-primary" type="submit">Save book</button>
     <a href="my-books.php" class="btn btn-link">Cancel</a>
 </form>
+
+<?php if (aiEnabled()): ?>
+<script>
+// Ask the server for a description without reloading the page.
+document.getElementById('aiButton').addEventListener('click', async () => {
+    const button = document.getElementById('aiButton');
+    const status = document.getElementById('aiStatus');
+    const title  = document.getElementById('title').value.trim();
+    const author = document.getElementById('author').value.trim();
+
+    if (!title || !author) {
+        status.textContent = 'Fill in the title and the author first.';
+        return;
+    }
+
+    button.disabled = true;
+    status.textContent = 'Asking the AI…';
+
+    try {
+        const response = await fetch('ai-description.php', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ title, author })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Something went wrong.');
+        }
+
+        document.getElementById('description').value = data.description;
+        status.textContent = 'Written by AI — read it and edit it before saving.';
+    } catch (error) {
+        status.textContent = error.message;
+    } finally {
+        button.disabled = false;
+    }
+});
+</script>
+<?php endif; ?>
