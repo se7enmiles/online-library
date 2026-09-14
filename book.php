@@ -16,6 +16,7 @@ $book = $stmt->fetch();
 
 // 3. No book with that id? Show a friendly message and stop.
 if (!$book) {
+    http_response_code(404);
     $pageTitle = 'Book not found';
     require 'includes/header.php';
     echo '<div class="alert alert-warning">That book does not exist.</div>';

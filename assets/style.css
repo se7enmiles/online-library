@@ -1,5 +1,10 @@
 /* BookLoop custom styles — everything else comes from Bootstrap */
 
+:root {
+    --cover-from: #2c5364;
+    --cover-to:   #203a43;
+}
+
 .book-cover {
     height: 160px;
     display: flex;
@@ -8,10 +13,39 @@
     font-size: 2.5rem;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(135deg, #2c5364, #203a43);
+    background: linear-gradient(135deg, var(--cover-from), var(--cover-to));
     border-radius: .375rem .375rem 0 0;
 }
 
-.book-card:hover {
+.book-card {
+    transition: box-shadow .15s ease-in-out;
+}
+
+.book-card:hover,
+.book-card:focus-within {
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+/* Long titles and author names must never break the card layout */
+.card-title,
+.card-text {
+    overflow-wrap: anywhere;
+}
+
+/* Badges sit more comfortably when several appear in a row */
+.card-body .badge + .badge {
+    margin-left: .15rem;
+}
+
+/* Buttons on a small screen deserve a little breathing room */
+@media (max-width: 576px) {
+    .btn + .btn,
+    form.d-inline + form.d-inline {
+        margin-top: .35rem;
+    }
+}
+
+/* Respect the reader's preference */
+@media (prefers-reduced-motion: reduce) {
+    .book-card { transition: none; }
 }

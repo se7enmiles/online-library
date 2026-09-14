@@ -13,7 +13,7 @@
     </div>
 <?php endif; ?>
 
-<form method="post" novalidate>
+<form method="post">
     <div class="mb-3">
         <label class="form-label" for="title">Title</label>
         <input class="form-control" type="text" id="title" name="title"

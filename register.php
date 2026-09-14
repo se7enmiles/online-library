@@ -77,7 +77,7 @@ require 'includes/header.php';
             </div>
         <?php endif; ?>
 
-        <form method="post" action="register.php" novalidate>
+        <form method="post" action="register.php">
             <div class="mb-3">
                 <label class="form-label" for="name">Name</label>
                 <input class="form-control" type="text" id="name" name="name"
